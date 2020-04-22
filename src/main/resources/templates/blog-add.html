@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Blog of the page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header">
+
+</header>
+<div class="container mt-5 mb-5">
+    <h1>Adding a post</h1>
+    <form action="/blog/add" method="post">
+        <!-- class это класс от бутстрапа  -->
+        <input type="text" name="title" placeholder="Write a post's name" class="form-control"><br>
+        <input type="text" name="anons" placeholder="Write an anons of the post" class="form-control"><br>
+        <textarea name="full_text" placeholder="Write a post's text" class="form-control"></textarea><br>
+        <button type="submit" class="btn btn-success">Add the post</button>
+    </form>
+</div>
+<div class="text-muted" th:insert="blocks/footer :: footer">
+
+</div>
+
+</body>
+</html>

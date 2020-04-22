@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Blog of the page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header">
+
+</header>
+<div class="container mt-5">
+</div>
+<!-- тут мы принимаем модель из контроллера этого шаблона, в качестве параметра принимаем название этой модели, что значит el : это что то типо фор ич
+ для каждого элемента в массиве принятых элементов объектов Post, алерт это уже класс бутстрапа для украшения этого дива-->
+<div th:each="el : ${post}" class="alert alert-info mt-5">
+    <!--тут мы обращаемся к шаблонизатору тимлиф th, затем к переменной el, которую мы выделили выше, а дальше через точку мы можем обратиться к
+     какому либо полю полученного объекта, в данном случае к полю title объекта Post-->
+    <h1 th:text="${el.title}"/>
+    <!-- то же самое, обращаемся к полю anons в объекте Post -->
+    <p th:text="${el.full_text}"/>
+    <p><b>Number of views: </b>  <span th:text="${el.views}"> </span> </p>
+    <a th:href=" '/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Edit</a><br><br>
+    <form th:action="'/blog/' + ${el.id} + '/remove'" method="post">
+        <button type="submit" class="btn btn-warning">Delete a post</button>
+    </form>
+
+</div>
+
+
+<div class="text-muted" th:insert="blocks/footer :: footer">
+
+</div>
+
+</body>
+</html>
